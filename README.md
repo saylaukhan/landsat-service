@@ -1,39 +1,23 @@
-# interviews
+# Landsat Viewer
 
-This template should help get you started developing with Vue 3 in Vite.
+## Описание
 
-## Recommended IDE Setup
+**Landsat Service** — это веб-сервис, позволяющий просматривать и анализировать спутниковые изображения с миссий Landsat. Сервис предоставляет пользователям возможность исследовать географические данные, просматривать снимки высокого разрешения и получать актуальную информацию о различных регионах Земли.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Возможности
 
-## Type Support for `.vue` Imports in TS
+- Просмотр спутниковых изображений с различных миссий Landsat
+- Масштабирование и панорамирование карт для детального изучения
+- Фильтрация изображений по дате и региону
+- Сохранение избранных мест для быстрого доступа
+- Интерактивные слои и инструменты анализа
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Технологический стек
 
-## Customize configuration
+- **Фронтенд:** Vue.js, TypeScript, CSS, HTML
+- **Бэкенд и хостинг:** Firebase
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### Предварительные требования
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- [Node.js](https://nodejs.org/) (версия 14.x или выше)
+- [npm](https://www.npmjs.com/) или [Yarn](https://yarnpkg.com/)
