@@ -13,6 +13,8 @@ import InputText from 'primevue/inputtext'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
 import ProgressSpinner from 'primevue/ProgressSpinner'
+import InputNumber from 'primevue/inputnumber';
+
 
 import App from './App.vue'
 import router from './router'
@@ -35,6 +37,7 @@ app.use(ToastService)
 app.use(createPinia())
 app.use(router)
 app.use(PrimeVue)
+app.component('app-input-number',InputNumber)
 app.component('app-menubar', Menubar)
 app.component('app-button', Button)
 app.component('app-input-text', InputText)

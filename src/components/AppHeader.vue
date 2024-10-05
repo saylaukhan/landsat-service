@@ -24,13 +24,13 @@ const items = ref<IMenuItem[]>([
   },
   {
     label: 'Map',
-    icon: 'pi pi-plus',
+    icon: 'pi pi-map',
     path: '/',
     show: computed((): boolean => !!userStore.userId)
   },
   {
     label: 'Screens',
-    icon: 'pi pi-list',
+    icon: 'pi pi-images',
     path: '/screens',
     show: computed((): boolean => !!userStore.userId)
   },

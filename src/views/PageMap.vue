@@ -1,18 +1,22 @@
 <template>
   <div>
     <div class="input-container">
-      <label for="lat">Широта:</label>
-      <input v-model="latitudeString" type="text" placeholder="Введите широту" @input="validateLatitude" />
-      <label for="lng">Долгота:</label>
-      <input v-model="longitudeString" type="text" placeholder="Введите долготу" @input="validateLongitude" />
-      <button @click="setLocation">Установить местоположение</button>
-      <button @click="drawGrid">Показать сетку Landsat</button>
+      <div class="inputs">
+        <InputNumber v-model.number="latitude" inputId="minmax-buttons" mode="decimal" showButtons :min="-90" :max="90" fluid placeholder="Latitude" />
+        <InputNumber v-model.number="longitude" inputId="minmax-buttons" mode="decimal" showButtons :min="-180" :max="180" fluid placeholder="Longitude"/>
+      </div>
+      <div class="buttons">
+        <Button @click="setLocation"  label="Primary" outlined >Set location</Button>
+        <Button @click="drawGrid">Show Landsat grid</Button>
+      </div>
     </div>
     <div v-if="latitude !== null && longitude !== null" ref="mapContainer" class="map-container"></div>
   </div>
 </template>
 
 <script setup lang="ts">
+import InputNumber from 'primevue/inputnumber';
+import Button from 'primevue/button'
 import { onMounted, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import 'leaflet/dist/leaflet.css';
@@ -22,8 +26,6 @@ const userStore = useUserStore();
 
 const latitude = ref<number | null>(userStore.latitude);
 const longitude = ref<number | null>(userStore.longitude);
-const latitudeString = ref<string>(userStore.latitude?.toString() || '');
-const longitudeString = ref<string>(userStore.longitude?.toString() || '');
 
 const mapContainer = ref<HTMLElement | null>(null);
 let map: L.Map | null = null;
@@ -88,8 +90,6 @@ const handleMapClick = (event: L.LeafletMouseEvent) => {
   const location = event.latlng;
   latitude.value = location.lat;
   longitude.value = location.lng;
-  latitudeString.value = location.lat.toString();
-  longitudeString.value = location.lng.toString();
 
   updateMarker([latitude.value, longitude.value]);
   map!.setView([latitude.value, longitude.value], 13);
@@ -98,18 +98,6 @@ const handleMapClick = (event: L.LeafletMouseEvent) => {
     userStore.latitude = latitude.value;
     userStore.longitude = longitude.value;
   }
-};
-
-// Валидация и замена запятой на точку в широте
-const validateLatitude = () => {
-  latitudeString.value = latitudeString.value.replace(',', '.');
-  latitude.value = parseFloat(latitudeString.value);
-};
-
-// Валидация и замена запятой на точку в долготе
-const validateLongitude = () => {
-  longitudeString.value = longitudeString.value.replace(',', '.');
-  longitude.value = parseFloat(longitudeString.value);
 };
 
 onMounted(() => {
@@ -135,8 +123,6 @@ onMounted(() => {
       map!.setView(userLocation, 13);
       latitude.value = position.coords.latitude;
       longitude.value = position.coords.longitude;
-      latitudeString.value = position.coords.latitude.toString();
-      longitudeString.value = position.coords.longitude.toString();
 
       marker = L.marker(userLocation).addTo(map!);
 
@@ -152,19 +138,26 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 .input-container {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
+  align-items: center;
 }
-
-.input-container input {
-  margin-right: 10px;
-  padding: 5px;
-  width: 100px;
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
-
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .map-container {
   width: 100%; 
   height: 80vh;
+  border: 2px ridge #0D89EC;
 }
 </style>

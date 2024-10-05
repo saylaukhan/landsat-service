@@ -32,12 +32,6 @@ const routes: RouteRecordRaw[] = [
     name: 'Auth',
     component: () => import('@/views/PageAuth.vue')
   },
-  // {
-  //   path: '/interview/:id',
-  //   name: 'Interview',
-  //   component: () => import('@/views/PageInterview.vue'),
-  //   beforeEnter: checkAuth
-  // },
   {
     path: '/screens',
     name: 'Screens',
