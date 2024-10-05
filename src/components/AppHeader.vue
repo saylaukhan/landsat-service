@@ -17,25 +17,25 @@ interface IMenuItem {
 
 const items = ref<IMenuItem[]>([
   {
-    label: 'Авторизация',
+    label: 'Authorization',
     icon: 'pi pi-user',
     path: '/auth',
     show: computed((): boolean => !userStore.userId)
   },
   {
-    label: 'Добавить',
+    label: 'Map',
     icon: 'pi pi-plus',
     path: '/',
     show: computed((): boolean => !!userStore.userId)
   },
   {
-    label: 'Список собеседований',
+    label: 'Screens',
     icon: 'pi pi-list',
-    path: '/list',
+    path: '/screens',
     show: computed((): boolean => !!userStore.userId)
   },
   {
-    label: 'Статистика',
+    label: 'Statistic',
     icon: 'pi pi-chart-pie',
     path: '/statistic',
     show: computed((): boolean => !!userStore.userId)
@@ -60,7 +60,7 @@ const signOutMethod = async (): Promise<void> => {
     <template #end>
       <span v-if="userStore.userId" @click="signOutMethod" class="flex align-item-center menu-exit">
         <span class="pi pi-sign-out p-p-menuitem-icon" />
-        <span class="ml-2">Выход</span>
+        <span class="ml-2">Exit</span>
       </span>
     </template>
   </app-menubar>

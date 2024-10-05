@@ -23,8 +23,8 @@ const checkAuth = (
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/views/PageHome.vue'),
+    name: 'Map',
+    component: () => import('@/views/PageMap.vue'),
     beforeEnter: checkAuth
   },
   {
@@ -32,16 +32,17 @@ const routes: RouteRecordRaw[] = [
     name: 'Auth',
     component: () => import('@/views/PageAuth.vue')
   },
+  // {
+  //   path: '/interview/:id',
+  //   name: 'Interview',
+  //   component: () => import('@/views/PageInterview.vue'),
+  //   beforeEnter: checkAuth
+  // },
   {
-    path: '/interview/:id',
-    name: 'Interview',
-    component: () => import('@/views/PageInterview.vue'),
+    path: '/screens',
+    name: 'Screens',
+    component: () => import('@/views/PageScreens.vue'),
     beforeEnter: checkAuth
-  },
-  {
-    path: '/list',
-    name: 'List',
-    component: () => import('@/views/PageList.vue')
   },
   {
     path: '/statistic',
