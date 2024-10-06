@@ -2,12 +2,24 @@
   <div>
     <div class="input-container">
       <div class="inputs">
-        <InputNumber v-model.number="latitude" inputId="minmax-buttons" mode="decimal" showButtons :min="-90" :max="90" fluid placeholder="Latitude" />
-        <InputNumber v-model.number="longitude" inputId="minmax-buttons" mode="decimal" showButtons :min="-180" :max="180" fluid placeholder="Longitude"/>
+        <div class="container_coordinate">
+          <InputNumber v-model.number="latitude" inputId="minmax-buttons" mode="decimal" showButtons :min="-90" :max="90" fluid placeholder="Latitude" />
+          <span class="pi pi-arrows-v"></span>
+        </div>
+        <div class="container_coordinate">
+          <InputNumber v-model.number="longitude" inputId="minmax-buttons" mode="decimal" showButtons :min="-180" :max="180" fluid placeholder="Longitude"/>
+          <span class="pi pi-arrows-h"></span>
+        </div>
       </div>
       <div class="buttons">
-        <Button @click="setLocation"  label="Primary" outlined >Set location</Button>
-        <Button @click="drawGrid">Show Landsat grid</Button>
+        <Button @click="setLocation"  label="Primary" outlined class="container_button" >
+          <span class="pi pi-map-marker"></span>
+          <span>Set location</span> 
+        </Button>
+        <Button @click="drawGrid" class="container_button">
+          <span class="pi pi-camera"></span>
+          <span>Show Landsat</span>
+        </Button>
       </div>
     </div>
     <div v-if="latitude !== null && longitude !== null" ref="mapContainer" class="map-container"></div>
@@ -159,5 +171,15 @@ onMounted(() => {
   width: 100%; 
   height: 80vh;
   border: 2px ridge #0D89EC;
+}
+.container_button {
+  gap: 15px;
+  align-items: center;
+}
+.container_coordinate {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
 }
 </style>

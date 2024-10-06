@@ -2,10 +2,30 @@
   <table>
     <thead>
       <tr>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Current Image Date</th>
-        <th>Next Image</th>
+        <th>
+          <div class="container_coordinate">
+            <span class="pi pi-arrows-v"></span>
+            <span>Latitude</span>
+          </div>
+        </th>
+        <th>
+          <div class="container_coordinate">
+            <span class="pi pi-arrows-h"></span>
+            <span>Longitude</span>
+          </div>
+        </th>
+        <th>
+          <div class="container_coordinate">
+            <span class="pi pi-calendar"></span>
+            <span>Current Date</span>
+          </div>
+        </th>
+        <th>
+          <div class="container_coordinate">
+            <span class="pi pi-calendar-clock"></span>
+            <span>Next Date</span>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -24,14 +44,24 @@
 
   <div v-if="images.length > 0" class="images-grid">
     <div v-for="index in 9" :key="index" class="image-container">
-      <p v-if="images[index - 1]"><strong>Image found</strong></p>
-      <p v-else><strong>Image not found</strong></p>
+      <p class="container_img" v-if="images[index - 1]">
+        <span class="pi pi-check" />
+        <span>Image found</span></p>
+      <p v-else>
+        <span class="pi pi-times" />
+        <span>Image not found</span>
+      </p>
       <img v-if="images[index - 1]" :src="images[index - 1].url" alt="Landsat Image" />
     </div>
   </div>
-  <p v-else>Loading images...</p>
+  <ProgressSpinner class="progress" v-else/>
 
-  <Button @click="downloadAllImages">Download all images</Button> <!-- Button to download all images -->
+  <div class="container_download">
+    <Button class="download" @click="downloadAllImages">
+      <span class="pi pi-download"></span>
+      <span>Download</span>
+    </Button> <!-- Button to download all images -->
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,6 +69,8 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useUserStore } from '@/stores/user';
 import Button from 'primevue/button';
+import ProgressSpinner from 'primevue/progressspinner';
+
 
 const userStore = useUserStore();
 const images = ref<{ date: string, url: string }[]>([]);
@@ -214,7 +246,33 @@ table, th, td {
 }
 
 th, td {
-  padding: 10px;
   text-align: center;
+}
+.container_img {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+.container_coordinate {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  background-color: #0D89EC;
+  padding: 15px;
+  color: white;
+} 
+.container_download {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.download {
+  display: flex;
+  gap: 5px;
+}
+.progress {
+  margin: 15px;
 }
 </style>

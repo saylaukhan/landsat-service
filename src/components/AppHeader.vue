@@ -58,7 +58,7 @@ const signOutMethod = async (): Promise<void> => {
       </template>
     </template>
     <template #end>
-      <span v-if="userStore.userId" @click="signOutMethod" class="flex align-item-center menu-exit">
+      <span v-if="userStore.userId" @click="signOutMethod" class="flex align-item-center menu-exit exit">
         <span class="pi pi-sign-out p-p-menuitem-icon" />
         <span class="ml-2">Exit</span>
       </span>
@@ -72,5 +72,9 @@ const signOutMethod = async (): Promise<void> => {
 }
 .menu-exit {
   cursor: pointer;
+}
+.exit {
+  display: flex;
+  align-items: center;
 }
 </style>

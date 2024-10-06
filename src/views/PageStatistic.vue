@@ -1,12 +1,39 @@
 <template>
-  <div>
-    <h1>Metadata Extraction</h1>
-    <p><strong>Satellite:</strong> {{ satellite }}</p>
-    <p><strong>Layer:</strong> {{ layer }}</p>
-    <p><strong>Type:</strong> {{ type }}</p>
-    <p><strong>Row Number:</strong> {{ row }}</p>
-    <p><strong>Column Number:</strong> {{ col }}</p>
-    <p><strong>Date:</strong> {{ formattedDate }}</p>
+  <div class="container">
+    <div class="container_h">
+      <span>Metadata Extraction</span>
+      <span class="pi pi-server"></span>
+    </div>
+    <p class="container_p">
+      <span class="pi pi-video"></span>
+      <b>Satellite:</b> 
+      <span>{{ satellite }}</span> 
+    </p>
+    <p  class="container_p">
+      <span class="pi pi-caret-right"></span>
+      <b>Layer:</b> 
+      <span>{{ layer }}</span> 
+    </p>
+    <p class="container_p">
+      <span class="pi pi-caret-right"></span>
+      <b>Type:</b> 
+      <span>{{ type }}</span> 
+    </p>
+    <p  class="container_p">
+      <span class="pi pi-arrows-h"></span>
+      <b>Row Number:</b> 
+      <span>{{ row }}</span> 
+    </p>
+    <p class="container_p" >
+      <span class="pi pi-arrows-v"></span>
+      <b>Path Number:</b> 
+      <span>{{ col }}</span> 
+    </p>
+    <p class="container_p" > 
+      <span class="pi pi-calendar"></span>
+      <b>Date:</b> 
+      <span>{{ formattedDate }}</span> 
+    </p>
   </div>
 </template>
 
@@ -91,5 +118,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Ваши стили */
+.container_p {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.container_h {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.container_h span {
+  font-size: 32px;
+  color: #0D89EC;
+  font-weight: bold;
+}
 </style>
